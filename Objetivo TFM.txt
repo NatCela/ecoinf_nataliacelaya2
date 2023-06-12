@@ -4,3 +4,13 @@ El objetivo principal de esta investigación será evaluar si el método de reve
 y valorar si este efecto se puede ver modulado por el aumento de la temperatura debido al cambio climático y por la selección de la especie. 
 Con esto, se pretende comprender la respuesta de regeneración frente a las condiciones futuras impuestas por el cambio climático y cómo esta respuesta 
 puede diferir entre especies con rasgos diferentes.
+
+Hipótesis
+
+Como hipótesis general, se espera que el método de revegetación afecte al desarrollo inicial de las plantas al modular la respuesta de la planta al estrés abiótico. 
+Como un mecanismo clave que impulsa el método de revegetación es el acceso de la planta a fuentes de agua profundas debido a diferencias en el desarrollo del 
+sistema radicular entre individuos sembrados y plantados, la aridificación podría invertir la balanza hacia una mejor eficacia con la siembra directa, 
+especialmente para las especies con una mayor demanda de agua. Por ello, se hipotetiza que el efecto del método de revegetación interactuará con las especies 
+y el tratamiento del cambio climático. Además, se espera que las dos especies de Quercus seleccionadas respondan de forma distinta tanto al método de revegetación 
+como al aumento de temperatura, teniendo las plántulas generadas por siembra directa una mayor sensibilidad de respuesta (en términos de supervivencia) 
+al aumento de temperatura que las procedentes de la plantación.
