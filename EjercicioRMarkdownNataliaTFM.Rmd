@@ -41,13 +41,90 @@ cat('<img src="C:/Users/Natalia/Desktop/MÁSTER/TFM/Imagen4.jpeg" alt="Mantenimi
 cat('</div>')
 ```
 
-•	**Mediciones**: Se realizarán con el fin de establecer el efecto de los factores de estudio (método de revegetación, OTC y especie) sobre el desarrollo de las plántulas. 
-Para evaluar estos efectos, se cuantificarán los siguientes parámetros: emergencia, supervivencia, rebrote, crecimiento, clorofila y potencial hídrico foliar. 
-Las medidas de las variables respuesta se han realizado o se realizarán generalmente en distintos momentos: sin estrés (finales de primavera), estrés inicial (mediados de verano), estrés máximo (antes de las primeras lluvias de otoño) y recuperación tras el estrés (mediados de otoño). Además, se medirán periódicamente las variables de humedad del suelo y temperatura.  
+•	**Mediciones**: Se han realizado con el fin de establecer el efecto de los factores de estudio (método de revegetación, OTC y especie) sobre el desarrollo de las plántulas. 
+Para evaluar estos efectos, se cuantifican los siguientes parámetros: emergencia, supervivencia, rebrote, crecimiento, clorofila y potencial hídrico foliar. 
+Las medidas de las variables respuesta se tomaron generalmente en distintos momentos: sin estrés (finales de primavera), estrés inicial (mediados de verano), estrés máximo (antes de las primeras lluvias de otoño) y recuperación tras el estrés (mediados de otoño). Además, se han medido periódicamente las variables de humedad del suelo y temperatura.  
 
 •	**Estudio estadístico y redacción**: Los datos obtenidos se analizarán mediante modelos de efectos mixtos (generalizados), evaluando el efecto del método de revegetación, las OTC y su interacción en las respuestas de las plantas. La masa de las bellotas constituirá una covariable, así como la posición de la parcela en el campo, dada la existencia de un gradiente natural de fertilidad. Tendremos en cuenta la identidad del árbol madre y de la parcela como efectos aleatorios. 
 
+## **Visualización de los datos de campo**
 
+Este ejercicio de esta asignatura me será útil para visualizar los datos tomados en campo y tener una idea previa al análisis de los mismos. Para ello voy a crear a continuación una serie de tablas donde se mostrarán las variables respuesta medidas en función de los factores que les afecta.
+
+PD: Estas tablas se han generado en una base de datos específica de otro script de R que será el correspondiente al posterior análisis estadístico. Para ello se han integrado todas las variables y se ha trabajado con ellas para crearlas. Un ejemplo de las funciones utilizadas en este código sería el siguiente: 
+
+*tabla1 <- datos_analisis %>% 
+  group_by(otc, `survival aug22`) %>% 
+  summarise(N =n())*
+            
+Sin embargo, para simplificar el proceso, crearé una tabla simple en cada chunk con estos datos.
+
+### Tabla relación presencia/ausencia OTC - Supervivencia
+
+```{r}
+library(knitr)
+Tabla_otc_supervivencia <- data.frame(OTC = c("1", "1", "0", "0"),
+                    Supervivencia = c("0", "1", "0", "1"),
+                    N = c("419", "115", "317", "233"))
+kable(Tabla_otc_supervivencia)
+```
+
+Gracias a esta tabla podemos observar que generalmente hay una mayor proporción de mortalidad de los individuos en el tratamiento de presencia de OTC en comparación con el tratamiento en ausencia de ésta. 
+
+### Tabla relación Método de revegetación - Supervivencia
+
+```{r}
+Tabla_metodo_supervivencia <- data.frame(Met.Reveg = c("P", "P", "S", "S"),
+                    Supervivencia = c("0", "1", "0", "1"),
+                    N = c("401", "121", "335", "227"))
+kable(Tabla_metodo_supervivencia)
+```
+
+Gracias a esta tabla podemos observar que generalmente hay una mayor proporción de mortalidad de los individuos sembrados en comparación con aquellos que se han plantado. 
+
+### Tabla relación Especie - Supervivencia
+
+```{r}
+Tabla_especie_supervivencia <- data.frame(Especie = c("Qf", "Qf", "Qi", "Qi"),
+                    Supervivencia = c("0", "1", "0", "1"),
+                    N = c("411", "160", "325", "188"))
+kable(Tabla_especie_supervivencia)
+```
+
+En esta tabla podemos observar que generalmente hay una mayor proporción de mortalidad de los individuos de *Q. faginea*, por lo que podemos inferir que la especie va a determinar el éxito de supervivencia independientemente de los factores a los que esté sometida la plántula
+
+### Gráfica relación Peso Bellota - Media altura
+
+```{r}
+Relacion_peso_altura <- data.frame(
+  x = c(2.14, 2.16, 2.32),
+  y = c(14.1, 19.8, 20.2)
+)
+library(ggplot2)
+ggplot(Relacion_peso_altura, aes(x = x, y = y)) +
+  geom_line() +
+  labs(title = "Relación Peso-Altura", x = "Peso bellota", y = "Media altura") +
+  theme_bw()
+```
+En esta gráfica podemos ver una relación directa entre el peso de la bellota y la media de la altura de la plántula, ya que a simple vista podemos ver que a mayor peso de la bellota, mayor altura alcanza como variable respuesta, evidentemente sin tener en cuenta los efectos de los tratamientos a los que están sometidas las plántulas.
+
+### Gráfica relación Peso Bellota - Media área
+
+```{r}
+Relacion_peso_area <- data.frame(
+  x = c(2.14, 2.16, 2.32),
+  y = c(7.55, 9.08, 12.4)
+)
+library(ggplot2)
+ggplot(Relacion_peso_area, aes(x = x, y = y)) +
+  geom_line() +
+  labs(title = "Relación Peso-Área", x = "Peso bellota", y = "Media área") +
+  theme_bw()
+```
+En esta gráfica también podemos ver una relación directa entre el peso de la bellota y la media del área de la plántula, ya que a simple vista podemos ver que a mayor peso de la bellota, mayor área posee como variable respuesta, evidentemente sin tener en cuenta los efectos de los tratamientos a los que están sometidas las plántulas.
+
+**ACLARACIÓN:**
+**Esto es sólo son observaciones a simple vista, tendremos que comprobar estas tendencias con un análisis estadístico.**
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
