@@ -3,26 +3,31 @@ title: "Ejercicio RMarkdown"
 author: "Natalia Celaya Rojas"
 date: "2023-05-11"
 output: html_document
+    
 ---
 # **Efecto del método de reforestación sobre plántulas de *Quercus spp.* en un escenario de cambio climático**
 
-```{r, results='asis'}
-cat('<div style="display: block; margin: 0 auto; text-align: center;">')
-knitr::include_graphics("C:/Users/Natalia/Desktop/MÁSTER/TFM/Imagen2.jpg")
-cat('</div>')
+```{r, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = 'center')
 ```
+
+
+```{r, results='asis', fig.cap="Figura 1. Vista general del sitio de estudio"}
+knitr::include_graphics("ImagenesRmarkdown/Imagen2.jpg")
+```
+
 
 ## **Metodología**
 
-El experimento de campo para la investigación se localiza en la Huerta La Paloma, una finca muy cercana a la ciudad de Granada y accesible a 15 minutos andando desde la Facultad de Ciencias. Contiene 160 parcelas hexagonales (Fig. 1), 80 de las cuales están cubiertas con una “Open Top Chamber” (OTC), una cámara abierta construida según los estándares internacionales de investigación que simula las condiciones de cambio climático a partir un incremento en la temperatura, influyendo también en el factor humedad. De esta manera se miden tanto las condiciones del lugar como cuál es el efecto de las OTC sobre el ambiente y qué efectos puede tener en el individuo.
+El experimento de campo para la investigación se localiza en la Huerta La Paloma (Fig. 1), una finca muy cercana a la ciudad de Granada y accesible a 15 minutos andando desde la Facultad de Ciencias. Contiene 160 parcelas hexagonales (Fig. 1), 80 de las cuales están cubiertas con una “Open Top Chamber” (OTC), una cámara abierta construida según los estándares internacionales de investigación que simula las condiciones de cambio climático a partir un incremento en la temperatura, influyendo también en el factor humedad. De esta manera se miden tanto las condiciones del lugar como cuál es el efecto de las OTC sobre el ambiente y qué efectos puede tener en el individuo (Fig. 2).
 
 
-```{r, results='asis'}
-cat('<div style="display: block; margin: 0 auto; text-align: center;">')
-cat('<img src="C:/Users/Natalia/Desktop/MÁSTER/TFM/Imagen1.png" alt="Diseño del experimento" />')
-cat('<p>En la finca se establecieron 160 parcelas hexagonales distribuidas en 32 filas de 5 parcelas cada una. La mitad de ellas se someten a un tratamiento experimental de cambio climático (“OTC”). En cada parcela se han establecido individuos de dos especies nativas de *Quercus* por medio de siembra y otros de plantación..</p>')
-cat('</div>')
+```{r, results='asis', fig.cap="Figura 2. Diseño del experimento. En la finca se establecieron 160 parcelas hexagonales distribuidas en 32 filas de 5 parcelas cada una. La mitad de ellas se someten a un tratamiento experimental de cambio climático (“OTC”). En cada parcela se han establecido individuos de dos especies nativas de *Quercus* por medio de siembra y otros de plantación."}
+
+knitr::include_graphics("ImagenesRmarkdown/Imagen1.png")
 ```
+
+
 
 Las especies objetivo a las que se dirige el experimento se han elegido debido a sus altas tasas de establecimiento por el gran tamaño de sus semillas, permitiendo la revegetación mediante ambos métodos. Se trata de dos especies autóctonas del lugar: *Quercus ilex*, un árbol esclerófilo de hoja perenne, y *Q.faginea*, una especie marcescente con mayor demanda de agua. 
 
@@ -32,13 +37,12 @@ Como se ha mencionado, se cultivaron simultáneamente plantones provenientes de 
 
 Las tareas específicas llevadas a cabo en este proyecto incluyen: 
 
-•	**Mantenimiento**: Periódicamente, se lavan las OTC para asegurar su transparencia a la radiación UV y se van desbrozando manualmente las hierbas para evitar que la competencia interfiera con el experimento. 
+•	**Mantenimiento**: Periódicamente, se lavan las OTC para asegurar su transparencia a la radiación UV (Fig. 3) y se van desbrozando manualmente las hierbas para evitar que la competencia interfiera con el experimento. 
 Además, se descargan periódicamente los datos de temperatura de los registradores de datos instalados, situados dentro y fuera de las cámaras.
 
-```{r, results='asis'}
-cat('<div style="display: block; margin: 0 auto; text-align: center;">')
-cat('<img src="C:/Users/Natalia/Desktop/MÁSTER/TFM/Imagen4.jpeg" alt="Mantenimiento OTC" width="300" />')
-cat('</div>')
+```{r, results='asis', fig.cap="Figura 3. Mantenimiento OTC", fig.width=5}
+
+knitr::include_graphics("ImagenesRmarkdown/Imagen4.jpeg")
 ```
 
 •	**Mediciones**: Se han realizado con el fin de establecer el efecto de los factores de estudio (método de revegetación, OTC y especie) sobre el desarrollo de las plántulas. 
@@ -66,10 +70,10 @@ library(knitr)
 Tabla_otc_supervivencia <- data.frame(OTC = c("1", "1", "0", "0"),
                     Supervivencia = c("0", "1", "0", "1"),
                     N = c("419", "115", "317", "233"))
-kable(Tabla_otc_supervivencia)
+kable(Tabla_otc_supervivencia, caption = "Tabla 1. Tabla de agrupamiento de indivuduos en función de la relación OTC-supervivencia")
 ```
 
-Gracias a esta tabla podemos observar que generalmente hay una mayor proporción de mortalidad de los individuos en el tratamiento de presencia de OTC en comparación con el tratamiento en ausencia de ésta. 
+Gracias a esta tabla (Tabla 1) podemos observar que generalmente hay una mayor proporción de mortalidad de los individuos en el tratamiento de presencia de OTC en comparación con el tratamiento en ausencia de ésta. 
 
 ### Tabla relación Método de revegetación - Supervivencia
 
@@ -77,10 +81,10 @@ Gracias a esta tabla podemos observar que generalmente hay una mayor proporción
 Tabla_metodo_supervivencia <- data.frame(Met.Reveg = c("P", "P", "S", "S"),
                     Supervivencia = c("0", "1", "0", "1"),
                     N = c("401", "121", "335", "227"))
-kable(Tabla_metodo_supervivencia)
+kable(Tabla_metodo_supervivencia, caption = "Tabla 2. Tabla de agrupamiento de indivuduos en función de la relación método de revegetación-supervivencia")
 ```
 
-Gracias a esta tabla podemos observar que generalmente hay una mayor proporción de mortalidad de los individuos sembrados en comparación con aquellos que se han plantado. 
+Gracias a esta tabla (Tabla 2) podemos observar que generalmente hay una mayor proporción de mortalidad de los individuos sembrados en comparación con aquellos que se han plantado. 
 
 ### Tabla relación Especie - Supervivencia
 
@@ -88,14 +92,14 @@ Gracias a esta tabla podemos observar que generalmente hay una mayor proporción
 Tabla_especie_supervivencia <- data.frame(Especie = c("Qf", "Qf", "Qi", "Qi"),
                     Supervivencia = c("0", "1", "0", "1"),
                     N = c("411", "160", "325", "188"))
-kable(Tabla_especie_supervivencia)
+kable(Tabla_especie_supervivencia, caption = "Tabla 3. Tabla de agrupamiento de indivuduos en función de la relación especie-supervivencia", position = "footnote")
 ```
 
-En esta tabla podemos observar que generalmente hay una mayor proporción de mortalidad de los individuos de *Q. faginea*, por lo que podemos inferir que la especie va a determinar el éxito de supervivencia independientemente de los factores a los que esté sometida la plántula
+En esta tabla (Tabla 3) podemos observar que generalmente hay una mayor proporción de mortalidad de los individuos de *Q. faginea*, por lo que podemos inferir que la especie va a determinar el éxito de supervivencia independientemente de los factores a los que esté sometida la plántula
 
 ### Gráfica relación Peso Bellota - Media altura
 
-```{r}
+```{r, fig.cap="Figura 7. Gráfica de relación de variables OTC-supervivencia"}
 Relacion_peso_altura <- data.frame(
   x = c(2.14, 2.16, 2.32),
   y = c(14.1, 19.8, 20.2)
@@ -106,11 +110,11 @@ ggplot(Relacion_peso_altura, aes(x = x, y = y)) +
   labs(title = "Relación Peso-Altura", x = "Peso bellota", y = "Media altura") +
   theme_bw()
 ```
-En esta gráfica podemos ver una relación directa entre el peso de la bellota y la media de la altura de la plántula, ya que a simple vista podemos ver que a mayor peso de la bellota, mayor altura alcanza como variable respuesta, evidentemente sin tener en cuenta los efectos de los tratamientos a los que están sometidas las plántulas.
+En esta gráfica (Figura 7) podemos ver una relación directa entre el peso de la bellota y la media de la altura de la plántula, ya que a simple vista podemos ver que a mayor peso de la bellota, mayor altura alcanza como variable respuesta, evidentemente sin tener en cuenta los efectos de los tratamientos a los que están sometidas las plántulas.
 
 ### Gráfica relación Peso Bellota - Media área
 
-```{r}
+```{r, fig.cap="Figura 8. Gráfica de relación de variables OTC-supervivencia"}
 Relacion_peso_area <- data.frame(
   x = c(2.14, 2.16, 2.32),
   y = c(7.55, 9.08, 12.4)
@@ -121,7 +125,7 @@ ggplot(Relacion_peso_area, aes(x = x, y = y)) +
   labs(title = "Relación Peso-Área", x = "Peso bellota", y = "Media área") +
   theme_bw()
 ```
-En esta gráfica también podemos ver una relación directa entre el peso de la bellota y la media del área de la plántula, ya que a simple vista podemos ver que a mayor peso de la bellota, mayor área posee como variable respuesta, evidentemente sin tener en cuenta los efectos de los tratamientos a los que están sometidas las plántulas.
+En esta gráfica (Figura 8) también podemos ver una relación directa entre el peso de la bellota y la media del área de la plántula, ya que a simple vista podemos ver que a mayor peso de la bellota, mayor área posee como variable respuesta, evidentemente sin tener en cuenta los efectos de los tratamientos a los que están sometidas las plántulas.
 
 **ACLARACIÓN:**
 **Esto es sólo son observaciones a simple vista, tendremos que comprobar estas tendencias con un análisis estadístico.**
